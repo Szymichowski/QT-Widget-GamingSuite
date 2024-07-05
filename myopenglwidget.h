@@ -1,10 +1,9 @@
 #ifndef MYOPENGLWIDGET_H
 #define MYOPENGLWIDGET_H
 
-#include <QOpenGLWidget>
-#include <QOpenGLFunctions>
+#include "grid.h"
 
-class MyOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions
+class MyOpenGLWidget : public Grid
 {
     Q_OBJECT
 
@@ -14,7 +13,6 @@ public:
 
 protected:
     void initializeGL() override;
-    void resizeGL(int w, int h) override;
     void paintGL() override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -24,6 +22,8 @@ private:
     float blockX;
     float blockY;
     float blockSize;
+
+    void drawGrid() override; // Implementierung der reinen virtuellen Methode
 };
 
 #endif // MYOPENGLWIDGET_H
