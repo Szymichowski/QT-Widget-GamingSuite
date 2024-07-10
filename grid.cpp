@@ -2,7 +2,7 @@
 
 Grid::Grid(QWidget *parent)
     : QOpenGLWidget(parent)
-    , aspectRatio(16.0f / 9.0f)
+    , aspectRatio(1.0f)
     , gridSpacing(0.1f) // Adjust the spacing as needed
 {
 }

@@ -14,16 +14,20 @@ public:
 protected:
     void initializeGL() override;
     void paintGL() override;
+    void resizeGL(int w, int h) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
+    void toggleFullscreen();
+    void drawGrid();
+
     float blockX;
     float blockY;
-    float blockSize;
-
-    void drawGrid() override; // Implementierung der reinen virtuellen Methode
+    float blockSize;    
+    bool m_isFullscreen;
+    QRect m_windowedGeometry;
 };
 
 #endif // MYOPENGLWIDGET_H
