@@ -19,6 +19,7 @@ protected:
     float getGridSpacing() const;
 
 private:
+
     float aspectRatio;
     float gridSpacing;
 };

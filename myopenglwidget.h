@@ -1,33 +1,33 @@
 #ifndef MYOPENGLWIDGET_H
 #define MYOPENGLWIDGET_H
 
-#include "grid.h"
+#include <QOpenGLWidget>
+#include <QOpenGLFunctions>
+#include "model.h"
+#include "controller.h"
 
-class MyOpenGLWidget : public Grid
-{
+class MyOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
     Q_OBJECT
 
 public:
-    MyOpenGLWidget(QWidget *parent = nullptr);
-    ~MyOpenGLWidget();
+    explicit MyOpenGLWidget(QWidget *parent = nullptr);
 
 protected:
     void initializeGL() override;
     void paintGL() override;
     void resizeGL(int w, int h) override;
+    void keyPressEvent(QKeyEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
-    void keyPressEvent(QKeyEvent *event) override;
 
 private:
-    void toggleFullscreen();
     void drawGrid();
+    void drawCube();
 
-    float blockX;
-    float blockY;
-    float blockSize;    
-    bool m_isFullscreen;
-    QRect m_windowedGeometry;
+    Model m_model;
+    Controller m_controller;
+    float m_gridSpacing;
+    float m_aspectRatio;
 };
 
 #endif // MYOPENGLWIDGET_H
